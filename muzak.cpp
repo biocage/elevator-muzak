@@ -1,17 +1,19 @@
 /**
- * (c) 2012 Marc Santoro <marc.santoro@gmail.com>
+ * (c) 2012-2017 Marc Santoro <marc.santoro@gmail.com>
  * Released under the GPLv2 or GPLv3
  */
 
 #include <stdio.h>
 
-#include <SDL/SDL.h>
-#include <SDL/SDL_joystick.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_joystick.h>
 #include <pthread.h>
 #include <iostream>
 #include <signal.h>
 #include <dirent.h>
 #include <vector>
+#include <unistd.h>
+
 
 using namespace std;
 
@@ -112,11 +114,10 @@ void init_joysticks() {
   printf("Detected %i joysticks\n", jsCount);
   for(int i=0;i<jsCount;i++) {
     SDL_Joystick *s = SDL_JoystickOpen(i);
-    int ret = SDL_JoystickOpened(i);
-    if(ret)
-      printf("Opened joystick %s (%i:%i)\n", SDL_JoystickName(i), i, ret);
+    if(s)
+      printf("Opened joystick %s (%i)\n", SDL_JoystickNameForIndex(i), i);
     else
-      printf("Failed to open joystick %s (%i:%i)\n", SDL_JoystickName(i), i, ret);
+      printf("Failed to open joystick %s (%i)\n", SDL_JoystickNameForIndex(i), i);
   }
   
 }

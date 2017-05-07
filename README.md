@@ -4,6 +4,6 @@ A co-worker wanted to give a going-away gag gift to a well-liked manager. We had
 
 Requirements:
 
-This uses SDL (1.2) and mplayer (called via execlp)
+This uses SDL and mplayer (called via execlp)
 
 
